@@ -153,6 +153,7 @@ const TaskDetails = () => {
                     handleTouchOutModal={handleTouchOutModal}
                     modalDeleteDelay={modalDeleteDelay}
                     deleteFunc={deleteTasks}
+                    page={'task'}
                 />
             </View>
         </SafeAreaView>

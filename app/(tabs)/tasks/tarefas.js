@@ -110,6 +110,7 @@ const tarefas = () => {
                 handleTouchOutModal={handleTouchOutModal}
                 modalDeleteDelay={modalDeleteDelay}
                 deleteFunc={deleteNote}
+                page={'task'}
             />
         </SafeAreaView>
     );

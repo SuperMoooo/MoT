@@ -131,6 +131,7 @@ const BirthDayPerson = () => {
                 handleTouchOutModal={handleTouchOutModal}
                 modalDeleteDelay={modalDeleteDelay}
                 deleteFunc={deleteBirthDay}
+                page={'birthday'}
             />
             {/* MODAL CALENDAR */}
             <CalendarAddBirthDay

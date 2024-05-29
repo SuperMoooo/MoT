@@ -8,6 +8,7 @@ const ModalDelete = ({
     handleTouchOutModal,
     modalDeleteDelay,
     deleteFunc,
+    page,
 }) => {
     return (
         <Pressable
@@ -65,7 +66,7 @@ const ModalDelete = ({
                         textAlign: 'center',
                     }}
                 >
-                    Delete Note?
+                    Delete {page}?
                 </Text>
                 <View
                     style={{

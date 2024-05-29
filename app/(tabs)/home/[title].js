@@ -87,6 +87,7 @@ const Detalhes = () => {
                 handleTouchOutModal={handleTouchOutModal}
                 modalDeleteDelay={modalDeleteDelay}
                 deleteNote={deleteNote}
+                page={'note'}
             />
         </SafeAreaView>
     );

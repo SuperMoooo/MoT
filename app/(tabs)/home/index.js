@@ -134,6 +134,7 @@ const Notas = () => {
                 handleTouchOutModal={handleTouchOutModal}
                 modalDeleteDelay={modalDeleteDelay}
                 deleteFunc={deleteNote}
+                page={'note'}
             />
         </SafeAreaView>
     );

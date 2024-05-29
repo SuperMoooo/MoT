@@ -143,6 +143,7 @@ const birthdays = () => {
                 handleTouchOutModal={handleTouchOutModal}
                 modalDeleteDelay={modalDeleteDelay}
                 deleteFunc={deleteBirthday}
+                page={'birthday'}
             />
             {/*<Calendar
                     style={{ marginTop: 150 }}
