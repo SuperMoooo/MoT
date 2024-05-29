@@ -1,3 +1,3 @@
 Mobile App - MoT (Birthdays, Notes, Tasks) - React Native + Redux
 
-![notificationIcon](https://github.com/SuperMoooo/MoT/assets/134961694/aaa7a612-cbe3-4ce6-85bd-c5d65b3b9a0e)
+![adaptive-icon](https://github.com/SuperMoooo/MoT/assets/134961694/1501d2bc-7338-4d39-acee-8ae7d1f50e71)
