@@ -6,7 +6,7 @@ ATTENTION: Sometimes when you open the app, it closes automatically, but if you 
 ![notificationIcon](https://github.com/SuperMoooo/MoT/assets/134961694/7eb5bd10-bc0b-4153-b6ab-df0336932b5f)
 
 
-Download: https://expo.dev/artifacts/eas/5nNtYMf2KfpTC6HrK3XCqi.apk
+Download: https://expo.dev/artifacts/eas/8X338QNcAUx3SXnfFfXoA8.apk
 
 
 App:
