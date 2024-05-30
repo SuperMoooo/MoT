@@ -8,6 +8,8 @@ import { removeBirthDay, updateBirthDay } from '../../birthdays/birthdaysSlice';
 import ModalDelete from '../../components/global_comp/ModalDelete';
 import BirthDayInfoMain from '../../components/birthday_comp/birthdayInfo.js/BirthDayInfoMain';
 import CalendarAddBirthDay from '../../components/birthday_comp/newBirthDayPage/CalendarAddBirthDay';
+import * as Notifications from 'expo-notifications';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BirthDayPerson = () => {
     const { id, birthPerson, birthday, age } = useLocalSearchParams();
@@ -54,8 +56,29 @@ const BirthDayPerson = () => {
 
     /* UPDATE BirthDay */
 
-    const handleLeaveInfo = () => {
+    const handleLeaveInfo = async () => {
         if (birthdayInput === birthday) {
+            const notificationId = await AsyncStorage.getItem(id);
+            if (notificationId) {
+                // Cancel the notification
+                await Notifications.cancelScheduledNotificationAsync(
+                    notificationId
+                );
+
+                // Remove the notificationId from storage
+                await AsyncStorage.removeItem(id);
+            }
+
+            Notifications.setNotificationHandler({
+                handleNotification: async () => ({
+                    shouldShowAlert: true,
+                    shouldPlaySound: true,
+                    shouldSetBadge: true,
+                }),
+            });
+
+            // Call the function to schedule the notification
+            scheduleBirthdayNotification(person, birthdayInput, id);
             dispatch(
                 updateBirthDay({
                     id: id,
@@ -68,14 +91,35 @@ const BirthDayPerson = () => {
         router.back();
     };
 
-    const handleUpdateBirthDay = () => {
+    const handleUpdateBirthDay = async () => {
+        const notificationId = await AsyncStorage.getItem(id);
+        if (notificationId) {
+            // Cancel the notification
+            await Notifications.cancelScheduledNotificationAsync(
+                notificationId
+            );
+
+            // Remove the notificationId from storage
+            await AsyncStorage.removeItem(id);
+        }
+
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowAlert: true,
+                shouldPlaySound: true,
+                shouldSetBadge: true,
+            }),
+        });
+
+        // Call the function to schedule the notification
+        scheduleBirthdayNotification(person, birthdayInput, id);
+
         dispatch(
             updateBirthDay({
                 id: id,
                 person: person,
                 birthDate: birthdayInput,
                 age: ageInput,
-                notification: notification,
             })
         );
 
