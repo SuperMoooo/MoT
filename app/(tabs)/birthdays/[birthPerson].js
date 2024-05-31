@@ -10,6 +10,7 @@ import BirthDayInfoMain from '../../components/birthday_comp/birthdayInfo.js/Bir
 import CalendarAddBirthDay from '../../components/birthday_comp/newBirthDayPage/CalendarAddBirthDay';
 import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import '../birthdays/backgroundNotificationHandle';
 
 const BirthDayPerson = () => {
     const { id, birthPerson, birthday, age } = useLocalSearchParams();
@@ -22,6 +23,46 @@ const BirthDayPerson = () => {
     const [modalDeleteDelay, setModaDeleteDelay] = useState(false);
     const [calendarUp, setCalendarUp] = useState(false);
     const [modalCalendarDelay, setModalCalendarDelay] = useState(false);
+
+    const scheduleBirthdayNotification = async (
+        person,
+        selectedBirthDay,
+        idBirth
+    ) => {
+        const { nextBirthday, age } =
+            calculateNextBirthdayAndAge(selectedBirthDay);
+
+        const notificationId = await Notifications.scheduleNotificationAsync({
+            content: {
+                title: 'MoT',
+                body: `It's ${person}'s birthday! Age: ${age} years old`,
+                data: { person, selectedBirthDay }, // Pass data to the notification
+            },
+            trigger: {
+                date: nextBirthday,
+                repeats: false,
+            },
+        });
+        await AsyncStorage.setItem(idBirth, notificationId);
+    };
+
+    const calculateNextBirthdayAndAge = (birthday) => {
+        const today = new Date();
+        const birthDate = new Date(birthday);
+        const nextBirthday = new Date(
+            today.getFullYear(),
+            birthDate.getMonth(),
+            birthDate.getDate()
+        );
+
+        // If next birthday is already passed this year, set it to next year
+        if (nextBirthday < today) {
+            nextBirthday.setFullYear(today.getFullYear() + 1);
+        }
+
+        const age = nextBirthday.getFullYear() - birthDate.getFullYear();
+        return { nextBirthday, age };
+    };
 
     const handleChangeDate = (date) => {
         const formattedDate = date.toISOString().split('T')[0];
@@ -57,6 +98,7 @@ const BirthDayPerson = () => {
     /* UPDATE BirthDay */
 
     const handleLeaveInfo = async () => {
+        router.back();
         if (birthdayInput === birthday) {
             const notificationId = await AsyncStorage.getItem(id);
             if (notificationId) {
@@ -88,10 +130,19 @@ const BirthDayPerson = () => {
                 })
             );
         }
-        router.back();
     };
 
     const handleUpdateBirthDay = async () => {
+        dispatch(
+            updateBirthDay({
+                id: id,
+                person: person,
+                birthDate: birthdayInput,
+                age: ageInput,
+            })
+        );
+
+        router.back();
         const notificationId = await AsyncStorage.getItem(id);
         if (notificationId) {
             // Cancel the notification
@@ -113,17 +164,6 @@ const BirthDayPerson = () => {
 
         // Call the function to schedule the notification
         scheduleBirthdayNotification(person, birthdayInput, id);
-
-        dispatch(
-            updateBirthDay({
-                id: id,
-                person: person,
-                birthDate: birthdayInput,
-                age: ageInput,
-            })
-        );
-
-        router.back();
     };
 
     const openModalCalendar = () => {

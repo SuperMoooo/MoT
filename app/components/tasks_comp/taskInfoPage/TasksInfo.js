@@ -70,6 +70,7 @@ const TasksInfo = ({
                                 onChangeText={(e) =>
                                     handleTextChange(e, field.fieldNumber)
                                 }
+                                autoFocus={true}
                                 placeholder="Task"
                                 placeholderTextColor={'gray'}
                                 cursorColor={
