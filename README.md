@@ -1,7 +1,4 @@
-Mobile App - MoT (Birthdays, Notes, Tasks) - React Native + Redux
-
-ATTENTION: Sometimes when you open the app, it closes automatically, but if you open the second time it works (dont know why, sry)
-
+Mobile App - MoT (Birthdays, Notes, Tasks) - React Native + Redux + Birthdays Notifications
 
 ![notificationIcon](https://github.com/SuperMoooo/MoT/assets/134961694/7eb5bd10-bc0b-4153-b6ab-df0336932b5f)
 
