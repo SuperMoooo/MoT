@@ -6,9 +6,9 @@ Note: Verify if you have notifications "On" for the app.
 
 
 Download: [https://expo.dev/artifacts/eas/8X338QNcAUx3SXnfFfXoA8.apk](https://expo.dev/artifacts/eas/oQSu4kwhSA2NhxSpmpdEec.apk)
-
-
 App:
+
+
 ![image](https://github.com/SuperMoooo/MoT/assets/134961694/e987b533-1e8b-4b8c-b878-8c33f2164682)
 
 
